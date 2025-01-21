@@ -60,6 +60,9 @@ const PlaceOrder = () => {
           items: cartItems,
           amount,
           address: {
+            firstName:formData.firstName,
+            lastName:formData.lastName,
+            email: formData.email,
             street: formData.street,
             city: formData.city,
             state: formData.state,
