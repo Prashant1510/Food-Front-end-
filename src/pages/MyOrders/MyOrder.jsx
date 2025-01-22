@@ -32,12 +32,14 @@ const MyOrder = () => {
             <div key={index} className="my-orders-order">
               <img src={assets.parcel_icon} alt="" />
               <p>
-                {order.items.map((item, index) => {
-                  if (index === order.items.length -1) {
-                    return item.name + "X" + item.quantity;
-                  }
+                {Object.entries(order.items[0]).map(([itemId, item], index) => {
+                  return item.name + "X" + item.quantity+", ";
                 })}
               </p>
+              <p>Amount : {order.amount}.00 </p>
+              <p>Items : {Object.keys(order.items[0]).length}</p>
+              <p><span>&#x25cf; </span> <b>{order.status}</b></p>
+              <button>Track Order</button>
             </div>
           );
         })}
