@@ -2,12 +2,16 @@ import { assets } from "../../assets/assets";
 import { StoreContext } from "../../context/StoreContext";
 import "./FoodItem.css";
 import PropTypes from "prop-types";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 const FoodItem = ({id, name, price, description, image }) => {
 
   const {addToCart, removeFromCart, cartItems, url} = useContext(StoreContext)
 
+useEffect(() => {
+  cartItems
+}, [cartItems])
+  
 
   return (
     
@@ -19,7 +23,7 @@ const FoodItem = ({id, name, price, description, image }) => {
             src={assets.add_icon_white}
             className="add"
             onClick={() => {
-              addToCart(id);
+              addToCart(id,name,price);
             }}
           />
         ) : (
@@ -31,7 +35,7 @@ const FoodItem = ({id, name, price, description, image }) => {
                 removeFromCart(id);
               }}
             />
-            <p>{cartItems[id]}</p>
+            <p>{cartItems[id].quantity}</p>
             <img
               src={assets.add_icon_green}
               alt=""
