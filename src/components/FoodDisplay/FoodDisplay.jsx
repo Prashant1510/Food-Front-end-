@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 const FoodDisplay = ({ category }) => {
   const { food_list } = useContext(StoreContext);
   
+  
   return (
     <div className="food-display" id="food-display">
       <h2>Top dishes near you</h2>

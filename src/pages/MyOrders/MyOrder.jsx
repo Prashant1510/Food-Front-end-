@@ -33,7 +33,7 @@ const MyOrder = () => {
               <img src={assets.parcel_icon} alt="" />
               <p>
                 {Object.entries(order.items[0]).map(([itemId, item], index) => {
-                  return item.name + "X" + item.quantity+", ";
+                  return item.name + " X " + item.quantity+", ";
                 })}
               </p>
               <p>Amount : {order.amount}.00 </p>
