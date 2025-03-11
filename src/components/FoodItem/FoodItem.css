@@ -12,6 +12,7 @@
 }
 .food-item-info{
     padding: 20px;
+    background-color: rgb(233, 233, 233);
 }
 .food-item-name-rating{
     display: flex;
@@ -45,7 +46,8 @@
     bottom: 15px;
     right: 15px; 
     cursor: pointer;
-    border-radius: 50%;
+    border-radius: 10px;
+    background-color: tomato;
 
 }
 .food-item-img-container .food-item-counter{
@@ -61,4 +63,15 @@
 }
 .food-item-counter img{
     width: 30px;
+}
+
+
+@media (max-width: 650px) {
+.food-item{
+    width: 90%;
+    height: 100%;
+}
+.food-item-info{
+    padding: 10px;
+}
 }

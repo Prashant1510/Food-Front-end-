@@ -35,12 +35,16 @@
 .navbar-profile{
     position: relative;
 }
+/* .navbar-right button{
+    
+} */
 .nav-profile-dropdown{
     position: absolute;
     display: none;
     right: -60px;
     z-index: 1;
 }
+
 .navbar-profile:hover .nav-profile-dropdown{
     display: flex;
     flex-direction: column;
@@ -80,6 +84,7 @@
     }
     .navbar-right button{
         padding: 8px 25px;
+
     }
 }
 @media (max-width:900px) {

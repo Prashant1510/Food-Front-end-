@@ -1,8 +1,9 @@
-import { useContext, useState} from "react";
+import { useContext, useState } from "react";
 import "./PlaceOrder.css";
 import { StoreContext } from "../../context/StoreContext";
 import axios from "axios";
 import isEmpty from "lodash/isEmpty";
+import {toast} from 'react-toastify';
 
 const PlaceOrder = () => {
   const { getTotalCartAmmount, cartItems, url } = useContext(StoreContext);
@@ -20,8 +21,12 @@ const PlaceOrder = () => {
     phone: "",
   });
 
+  const [loading, setLoading] = useState(false);
+
   // Check if all fields in formData are filled
-  const isFormComplete = Object.values(formData).every((value) => value.trim() !== "");
+  const isFormComplete = Object.values(formData).every(
+    (value) => value.trim() !== ""
+  );
 
   // check if the cart is empty
   const isCartEmpty = isEmpty(cartItems);
@@ -35,13 +40,15 @@ const PlaceOrder = () => {
   // Handle payment
   const handlePayment = async () => {
     if (isCartEmpty) {
-      alert("Your cart is empty.");
+      toast.info("Your cart is empty.");
       return;
     }
     if (!isFormComplete) {
-      alert("Please fill all the fileds of form.");
+      toast.error("Please fill all the fileds of form.");
       return;
     }
+
+    setLoading(true);
 
     const amount =
       getTotalCartAmmount() + (getTotalCartAmmount() === 0 ? 0 : 40);
@@ -60,8 +67,8 @@ const PlaceOrder = () => {
           items: cartItems,
           amount,
           address: {
-            firstName:formData.firstName,
-            lastName:formData.lastName,
+            firstName: formData.firstName,
+            lastName: formData.lastName,
             email: formData.email,
             street: formData.street,
             city: formData.city,
@@ -102,9 +109,15 @@ const PlaceOrder = () => {
             { headers: { Authorization: `Bearer ${token}` } }
           );
           if (verification.data.success) {
-            alert("Payment Successful");
+            alert(
+              `Payment Successful!\nOrder ID: ${paymentData.orderId}\nTransaction ID: ${paymentData.razorpayPaymentId}`
+            );
+            // Show alert after navigation
+            setTimeout(() => {
+              window.location.href = "/";
+            }, 1000);
           } else {
-            alert("Payment Verification Failed");
+            toast.error("Payment Verification Failed");
           }
         },
         prefill: {
@@ -117,7 +130,7 @@ const PlaceOrder = () => {
         },
         modal: {
           ondismiss: function () {
-            alert("Payment was cancelled or closed by the user.");
+            toast.error("Payment was cancelled or closed by the user.");
             console.log("User closed the payment modal.");
           },
         },
@@ -130,7 +143,9 @@ const PlaceOrder = () => {
       }
     } catch (error) {
       console.error("Payment failed:", error);
-      alert("Something went wrong. Please try again.");
+      toast.error("Something went wrong. Please try again.");
+    }finally{
+      setLoading(false);
     }
   };
 
@@ -229,8 +244,8 @@ const PlaceOrder = () => {
               </b>
             </div>
           </div>
-          <button type="button" onClick={handlePayment} > 
-            PROCEED TO PAYMENT
+          <button type="button" onClick={handlePayment} disabled={loading}>
+            {loading ? "Processing..." : "PROCEED TO PAYMENT"}
           </button>
         </div>
       </div>

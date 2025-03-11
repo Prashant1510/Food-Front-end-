@@ -39,7 +39,7 @@ const MyOrder = () => {
               <p>Amount : {order.amount}.00 </p>
               <p>Items : {Object.keys(order.items[0]).length}</p>
               <p><span>&#x25cf; </span> <b>{order.status}</b></p>
-              <button>Track Order</button>
+              <button>Track Order <span><img className="track-img" src={assets.track_icon} alt="" /></span></button>
             </div>
           );
         })}

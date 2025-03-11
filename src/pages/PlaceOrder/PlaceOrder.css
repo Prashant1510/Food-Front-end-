@@ -30,3 +30,6 @@
     width: 100%;
     max-width: max(40%,500px);
 }
+.place-order-right button{
+    cursor: pointer;
+}

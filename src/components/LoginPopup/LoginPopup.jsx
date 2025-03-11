@@ -4,6 +4,8 @@ import { assets } from '../../assets/assets'
 import PropTypes from "prop-types";
 import { StoreContext } from '../../context/StoreContext';
 import axios from "axios"
+import {toast} from 'react-toastify';
+
 const LoginPopup = ({setShowLogin}) => {
     const[currentState, setCurrentState] = useState('Login')
     const[data,setData] = useState({
@@ -27,7 +29,7 @@ const LoginPopup = ({setShowLogin}) => {
             localStorage.setItem("token",response.data.token)
             setShowLogin(false)
         }else{
-            alert(response.data.message)
+            toast.error(response.data.message)
         }
     }
     const onChangeHandler = (event) =>{
@@ -52,7 +54,7 @@ const LoginPopup = ({setShowLogin}) => {
             <button type='submit'>{currentState === "Sign Up"? "Create Account" : "Login"}</button>
             <div className="login-popup-condition">
                 <input type="checkbox" required />
-                <p>By continuing, i agree to the term of use and privacy policy</p>
+                <p>I agree to the term of use and privacy policy</p>
             </div>
             {currentState === "Login"? <p>Create a new account <span onClick={()=>{setCurrentState("Sign Up")}}>Click here</span></p>:<p>Already have an account <span onClick={()=>{setCurrentState("Login")}}>Login here</span></p> }
         </form>

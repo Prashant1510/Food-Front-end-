@@ -8,7 +8,8 @@
 }
 body{
   min-height: 100vh;
-  background-color: #f5f5f5;
+  background-color: #ffffff;
+  cursor: url('./assets/fork.png'), auto;
 }
 a{
   text-decoration: none;
@@ -28,7 +29,7 @@ a{
   font-size: 16px;
   color: #49557e;
   border: 1px solid tomato;
-  border-radius: 50px;
+  border-radius: 10px;
   cursor: pointer;
   padding: 10px 30px;
   transition: 0.2s ease;
