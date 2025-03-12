@@ -58,6 +58,7 @@ const PlaceOrder = () => {
       const token = localStorage.getItem("token");
 
       if (!token) {
+        toast.error("Please log in first");
         throw new Error("No token found. Please log in.");
       }
 
@@ -85,7 +86,7 @@ const PlaceOrder = () => {
 
       // Step 2: Use Razorpay Checkout
       const options = {
-        key: "rzp_test_Yeup767rJBOxR3", // Replace with Razorpay Key ID
+        key: import.meta.env.VITE_API_RAZORPAY_ID, // Replace with Razorpay Key ID
         amount: data.amount * 100,
         currency: "INR",
         name: `${formData.firstName} ${formData.lastName}`,
