@@ -5,6 +5,7 @@
     box-shadow: 0 0 10px rgb(146, 145, 145);
     transition: 0.3s;
     animation: fadeIn 1s;
+    background-color: rgb(233, 233, 233);
 }
 .food-item-image{
     width: 100%;
@@ -68,7 +69,7 @@
 
 @media (max-width: 650px) {
 .food-item{
-    width: 90%;
+    width: 100%;
     height: 100%;
 }
 .food-item-info{

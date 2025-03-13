@@ -19,12 +19,12 @@ a{
   width: 80%;
   margin: auto;
 }
-.navbar-right{
+/* .navbar-right{
   display: flex;
   gap: 40px;
   align-items: center;
-}
-.navbar button{
+} */
+/* .navbar button{
   background: transparent;
   font-size: 16px;
   color: #49557e;
@@ -37,7 +37,7 @@ a{
 .navbar button:hover{
   background-color: #e6d0cc;
 
-}
+} */
 
 @keyframes fadeIn {
   0%{

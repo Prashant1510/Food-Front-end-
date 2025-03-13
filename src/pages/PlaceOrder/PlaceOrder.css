@@ -33,3 +33,10 @@
 .place-order-right button{
     cursor: pointer;
 }
+
+@media (max-width:600px) {
+    .place-order{
+        display: block;
+    }
+    
+}
